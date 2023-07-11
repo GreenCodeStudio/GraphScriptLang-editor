@@ -22,7 +22,8 @@ export class FunctionCall extends AbstractNode {
     get inputs() {
         return {
             '__enter': {
-                name: 'Enter'
+                name: 'Enter',
+                type: 'flow'
             },
             ...this.fun.inputs
         }
@@ -31,7 +32,8 @@ export class FunctionCall extends AbstractNode {
     get outputs() {
         return {
             '__exit': {
-                name: 'Exit'
+                name: 'Exit',
+                type: 'flow'
             },
             ...this.fun.outputs
         }

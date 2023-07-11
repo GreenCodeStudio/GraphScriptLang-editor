@@ -15,7 +15,8 @@ export class Input extends AbstractNode {
     get outputs() {
         return {
             '__exit': {
-                name: 'Exit'
+                name: 'Exit',
+                type: 'flow'
             }
         }
     }

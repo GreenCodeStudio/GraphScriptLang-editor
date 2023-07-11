@@ -15,6 +15,7 @@ export class ConstantValue extends AbstractNode {
         return {
             value: {
                 type: this.valueType,
+                name: 'value'
             }
         };
     }
@@ -23,6 +24,11 @@ export class ConstantValue extends AbstractNode {
         input.posX = x.posX;
         input.posY = x.posY;
         input.id = x.id;
+        input.valueType = x.valueType;
+        input.value = x.value;
         return input;
+    }
+    serialize() {
+        return {...super.serialize(), valueType:this.valueType, value:this.value};
     }
 }
