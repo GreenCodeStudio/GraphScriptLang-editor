@@ -1,6 +1,7 @@
 import {Input} from "./Graphs/Input";
 
-export class FunctionNode {
-    elements = [new Input()];
+export class GSLFunction {
     connections = [];
+    inputs = {};
+    outputs = {};
 }

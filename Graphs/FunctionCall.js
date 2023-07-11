@@ -1,29 +1,37 @@
 import {AbstractNode} from "./AbstractNode";
 
-export class FunctionCall extends AbstractNode{
-    name = "";
-    path="";
-    parameters = [];
-    constructor(name, path, parameters) {
-        super();
+export class FunctionCall extends AbstractNode {
 
-        this.name = name;
-        this.path = path;
-        this.parameters = parameters;
+
+    constructor(fun) {
+        super();
+        this.fun = fun;
 
     }
-    get inputs(){
+
+    get name() {
+        return this.fun.name;
+    }
+
+    get path() {
+        return this.fun.path;
+    }
+
+    get inputs() {
         return {
-            '__enter':{
-                name:'Enter'
-            }
+            '__enter': {
+                name: 'Enter'
+            },
+            ...this.fun.inputs
         }
     }
-    get outputs(){
+
+    get outputs() {
         return {
-            '__exit':{
-                name:'Exit'
-            }
+            '__exit': {
+                name: 'Exit'
+            },
+            ...this.fun.outputs
         }
     }
 }
