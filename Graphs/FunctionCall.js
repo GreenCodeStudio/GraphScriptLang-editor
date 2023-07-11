@@ -13,31 +13,40 @@ export class FunctionCall extends AbstractNode {
         return this._fun;
     }
 
-   set fun(value) {
+    set fun(value) {
         this._fun = value;
         this.name = value?.name;
         this.path = value?.path;
-   }
+    }
 
     get inputs() {
-        return {
-            '__enter': {
-                name: 'Enter',
-                type: 'flow'
-            },
-            ...this.fun.inputs
+        if (this.fun.pure) {
+            return this.fun.inputs;
+        } else {
+            return {
+                '__enter': {
+                    name: 'Enter',
+                    type: 'flow'
+                },
+                ...this.fun.inputs
+            }
         }
     }
 
     get outputs() {
-        return {
-            '__exit': {
-                name: 'Exit',
-                type: 'flow'
-            },
-            ...this.fun.outputs
+        if (this.fun.pure) {
+            return this.fun.outputs;
+        } else {
+            return {
+                '__exit': {
+                    name: 'Exit',
+                    type: 'flow'
+                },
+                ...this.fun.outputs
+            }
         }
     }
+
     static deserialize(x) {
         let fun = new FunctionCall();
         fun.posX = x.posX;
@@ -47,7 +56,8 @@ export class FunctionCall extends AbstractNode {
         fun.path = x.path;
         return fun;
     }
+
     serialize() {
-        return {...super.serialize(), name:this.name, path:this.path};
+        return {...super.serialize(), name: this.name, path: this.path};
     }
 }
