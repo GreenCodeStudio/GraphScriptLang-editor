@@ -3,6 +3,7 @@ import {GraphFunction} from "./GraphFunction";
 import {FunctionCall} from "./Graphs/FunctionCall";
 import {Input} from "./Graphs/Input";
 import {ConstantValue} from "./Graphs/ConstantValue";
+import {If} from "./Graphs/If";
 
 export function Deserialize(x) {
     switch (x.type) {
@@ -16,6 +17,8 @@ export function Deserialize(x) {
             return FunctionCall.deserialize(x);
         case 'ConstantValue':
             return ConstantValue.deserialize(x);
+        case 'If':
+            return If.deserialize(x);
     }
 }
 
