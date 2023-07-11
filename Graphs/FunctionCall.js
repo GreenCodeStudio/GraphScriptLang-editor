@@ -9,13 +9,15 @@ export class FunctionCall extends AbstractNode {
 
     }
 
-    get name() {
-        return this.fun.name;
+    get fun() {
+        return this._fun;
     }
 
-    get path() {
-        return this.fun.path;
-    }
+   set fun(value) {
+        this._fun = value;
+        this.name = value?.name;
+        this.path = value?.path;
+   }
 
     get inputs() {
         return {
@@ -33,5 +35,17 @@ export class FunctionCall extends AbstractNode {
             },
             ...this.fun.outputs
         }
+    }
+    static deserialize(x) {
+        let fun = new FunctionCall();
+        fun.posX = x.posX;
+        fun.posY = x.posY;
+        fun.id = x.id;
+        fun.name = x.name;
+        fun.path = x.path;
+        return fun;
+    }
+    serialize() {
+        return {...super.serialize(), name:this.name, path:this.path};
     }
 }

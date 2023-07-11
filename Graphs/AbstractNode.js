@@ -1,11 +1,20 @@
 export class AbstractNode {
     posX = 0;
     posY = 0;
-    id="";
+    id = "";
 
     constructor() {
-        this.id=+new Date() + ''+Math.floor(Math.random() * 10000000000000000)
+        this.id = +new Date() + '' + Math.floor(Math.random() * 10000000000000000)
 
+    }
+
+    serialize() {
+        return {
+            type: this.constructor.name,
+            posX: this.posX,
+            posY: this.posY,
+            id: this.id
+        }
     }
 
 }

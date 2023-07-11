@@ -18,4 +18,11 @@ export class ConstantValue extends AbstractNode {
             }
         };
     }
+    static deserialize(x) {
+        let input = new ConstantValue(x.valueType, x.value);
+        input.posX = x.posX;
+        input.posY = x.posY;
+        input.id = x.id;
+        return input;
+    }
 }
