@@ -5,6 +5,7 @@ import {Deserialize} from "./Deserialize";
 export class GraphFunction extends GSLFunction{
 
     elements = [new Input()];
+    variables = [];
     name = "";
     path="";
     serialize() {
