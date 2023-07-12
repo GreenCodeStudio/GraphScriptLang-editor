@@ -4,8 +4,11 @@ export class AbstractNode {
     id = "";
 
     constructor() {
-        this.id = +new Date() + '' + Math.floor(Math.random() * 10000000000000000)
+        this.id = AbstractNode.generateId()
 
+    }
+    static generateId(){
+        return +new Date() + '' + Math.floor(Math.random() * 10000000000000000)
     }
 
     serialize() {
