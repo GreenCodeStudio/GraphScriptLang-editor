@@ -8,6 +8,11 @@ export class GraphFunction extends GSLFunction{
     variables = [];
     name = "";
     path="";
+    constructor(path, name) {
+        super();
+        this.path = path;
+        this.name = name;
+    }
     serialize() {
         return {
             type: 'GraphFunction',
@@ -18,11 +23,9 @@ export class GraphFunction extends GSLFunction{
         }
     }
     static deserialize(x) {
-        let graphFunction = new GraphFunction();
+        let graphFunction = new GraphFunction(x.path, x.name);
         graphFunction.elements = x.elements.map(e => Deserialize(e));
         graphFunction.connections = x.connections;
-        graphFunction.name = x.name;
-        graphFunction.path = x.path;
         return graphFunction;
     }
 }
