@@ -1,6 +1,6 @@
 import {AbstractNode} from "./AbstractNode";
 
-export class GetVariable extends AbstractNode {
+export class SetVariable extends AbstractNode {
 
 
     constructor(variable) {
@@ -10,21 +10,31 @@ export class GetVariable extends AbstractNode {
 
 
     get inputs() {
-        return {}
-    }
-
-    get outputs() {
 
         return {
+            '__enter': {
+                name: 'Enter',
+                type: 'flow'
+            },
             'value': {
                 name: this.variable.name,
                 type: this.variable.type
             },
         }
+
+    }
+
+    get outputs() {
+        return {
+            '__exit': {
+                name: 'Exit',
+                type: 'flow'
+            }
+        }
     }
 
     static deserialize(x) {
-        let item = new GetVariable();
+        let item = new SetVariable();
         item.posX = x.posX;
         item.posY = x.posY;
         item.id = x.id;
